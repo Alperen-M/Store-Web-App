@@ -1,0 +1,197 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\migrations\\20250710124525_addstorestableandstoreidtoproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\migrations\\20250710124525_addstorestableandstoreidtoproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\migrations\\20250710123739_addstorestableandrelation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\migrations\\20250710123739_addstorestableandrelation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\dtos\\storedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\dtos\\storedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|c:\\users\\alperen\\desktop\\okul\\warehouse\\webapplication1\\webapplication1\\models\\stores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02C75D79-DFAD-4F6A-8903-1574DE87EDF5}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\stores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "WebApplication1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T13:02:44.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApplication1\\appsettings.json",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\appsettings.json",
+              "RelativeToolTip": "WebApplication1\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-11T13:02:43.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20250710124525_AddStoresTableAndStoreIdToProducts.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Migrations\\20250710124525_AddStoresTableAndStoreIdToProducts.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Migrations\\20250710124525_AddStoresTableAndStoreIdToProducts.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Migrations\\20250710124525_AddStoresTableAndStoreIdToProducts.cs",
+              "RelativeToolTip": "WebApplication1\\Migrations\\20250710124525_AddStoresTableAndStoreIdToProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T13:00:07.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20250710123739_AddStoresTableAndRelation.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Migrations\\20250710123739_AddStoresTableAndRelation.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Migrations\\20250710123739_AddStoresTableAndRelation.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Migrations\\20250710123739_AddStoresTableAndRelation.cs",
+              "RelativeToolTip": "WebApplication1\\Migrations\\20250710123739_AddStoresTableAndRelation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T13:00:05.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StoreDto.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Dtos\\StoreDto.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Dtos\\StoreDto.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Dtos\\StoreDto.cs",
+              "RelativeToolTip": "WebApplication1\\Dtos\\StoreDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T11:34:38.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Dtos\\ProductDto.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Dtos\\ProductDto.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Dtos\\ProductDto.cs",
+              "RelativeToolTip": "WebApplication1\\Dtos\\ProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T11:34:13.495Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "WebApplication1\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\appsettings.Development.json",
+              "RelativeToolTip": "WebApplication1\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-11T08:30:00.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StoreController.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Controllers\\StoreController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\StoreController.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Controllers\\StoreController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\StoreController.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAcwGMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T07:18:50.667Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "WebApplication1\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T07:18:25.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Models\\Product.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T06:59:32.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Stores.cs",
+              "DocumentMoniker": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Models\\Stores.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Stores.cs",
+              "ToolTip": "C:\\Users\\ALPEREN\\Desktop\\okul\\warehouse\\WebApplication1\\WebApplication1\\Models\\Stores.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Stores.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T06:35:55.158Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
