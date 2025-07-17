@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
@@ -24,13 +24,13 @@ namespace WebApplication1.Controllers
 
             var storeDtos = stores.Select(s => new StoreDto
             {
-                Id = s.Id,
+               
                 Name = s.Name,
                 Location = s.Location,
                 Description = s.Description,
                 Products = s.Products.Select(p => new ProductDto
                 {
-                    Id = p.Id,
+                  
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description
@@ -52,13 +52,13 @@ namespace WebApplication1.Controllers
 
             var storeDto = new StoreDto
             {
-                Id = store.Id,
+              
                 Name = store.Name,
                 Location = store.Location,
                 Description = store.Description,
                 Products = store.Products.Select(p => new ProductDto
                 {
-                    Id = p.Id,
+                   
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description
@@ -89,7 +89,7 @@ namespace WebApplication1.Controllers
             await _context.SaveChangesAsync();
 
             // Response DTO
-            storeDto.Id = store.Id;
+            
             return CreatedAtAction(nameof(GetStoreById), new { id = store.Id }, storeDto);
         }
 
