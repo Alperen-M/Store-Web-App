@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebApplication1.Dtos;
 namespace WebApplication1.Models
@@ -17,6 +17,7 @@ namespace WebApplication1.Models
         [StringLength(100)]
         public string? Location { get; set; }
 
-        public List<ProductResponseDto>? Products { get; set; }
+        public List<WebApplication1.Dtos.ProductResponseDto>? Products { get; set; }
+
     }
 }
