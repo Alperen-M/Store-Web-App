@@ -1,12 +1,17 @@
-﻿/*using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Dtos;
 using WebApplication1.Models;
+
+// Entity'leri alias ile kullan (ambiguous riskini azaltır)
+using ProductEntity = WebApplication1.Models.Product;
+using StoreEntity = WebApplication1.Models.Stores;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -16,63 +21,124 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
+        // --------------------------------------------------------------------
+        // GET: api/product
+        // --------------------------------------------------------------------
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAll()
         {
-            var result = await _context.Products.ToListAsync();
-            Console.WriteLine(result);
-            return result;
+            var products = await _context.Products
+                .Include(p => p.Store)
+                .Select(p => new ProductResponseDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+             
+                })
+                .ToListAsync();
+
+            return Ok(products);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetById(int id)
+        // --------------------------------------------------------------------
+        // GET: api/product/{id}
+        // --------------------------------------------------------------------
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductResponseDto>> GetById(int id)
         {
-            var product = await _context.Products.Include(p => p.Store).FirstOrDefaultAsync(p => p.Id == id);
-            if (product == null) return NotFound();
+            var product = await _context.Products
+                .Include(p => p.Store)
+                .Where(p => p.Id == id)
+                .Select(p => new ProductResponseDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description,
+                  
+                })
+                .FirstOrDefaultAsync();
+
+            if (product == null)
+                return NotFound();
+
             return Ok(product);
         }
 
+        // --------------------------------------------------------------------
+        // POST: api/product
+        // StoreId Swagger'da yok; otomatik atanacak.
+        // --------------------------------------------------------------------
         [HttpPost]
-        public async Task<ActionResult<Product>> Create(Product product)
+        public async Task<IActionResult> Create([FromBody] ProductCreateDto dto)
         {
-            // StoreId kontrolü
-            if (product.StoreId != null && !_context.Stores.Any(s => s.Id == product.StoreId))
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // En az bir Store var mı?
+            var firstStore = await _context.Stores.FirstOrDefaultAsync();
+            if (firstStore == null)
             {
-                return BadRequest("Geçerli bir StoreId giriniz.");
+                return BadRequest("Önce en az bir mağaza (Store) oluşturmalısınız; ürün atanacak mağaza bulunamadı.");
             }
+
+            var product = new ProductEntity
+            {
+                Name = dto.Name,
+                Price = dto.Price,
+                Description = dto.Description,
+                StoreId = firstStore.Id
+            };
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+
+            // Response DTO
+            var response = new ProductResponseDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                
+            };
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, response);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Product updated)
+        // --------------------------------------------------------------------
+        // PUT: api/product/{id}
+        // Store değişmez; sadece temel alanlar güncellenir.
+        // --------------------------------------------------------------------
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateDto dto)
         {
-            if (id != updated.Id) return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            if (updated.StoreId != null && !_context.Stores.Any(s => s.Id == updated.StoreId))
-            {
-                return BadRequest("Geçerli bir StoreId giriniz.");
-            }
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+                return NotFound();
 
-            var existing = await _context.Products.FindAsync(id);
-            if (existing == null) return NotFound();
-
-            existing.Name = updated.Name;
-            existing.Price = updated.Price;
-            existing.Description = updated.Description;
-            existing.StoreId = updated.StoreId;
+            product.Name = dto.Name;
+            product.Price = dto.Price;
+            product.Description = dto.Description;
 
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        // --------------------------------------------------------------------
+        // DELETE: api/product/{id}
+        // --------------------------------------------------------------------
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            if (product == null) return NotFound();
+            if (product == null)
+                return NotFound();
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
@@ -80,4 +146,4 @@ namespace WebApplication1.Controllers
         }
     }
 }
-*/
+

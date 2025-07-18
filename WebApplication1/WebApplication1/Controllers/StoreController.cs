@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Dtos;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -16,19 +17,18 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        // GET: api/store
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StoreDto>>> GetAllStores()
+        public async Task<ActionResult<IEnumerable<StoreResponseDto>>> GetAllStores()
         {
             var stores = await _context.Stores.Include(s => s.Products).ToListAsync();
 
-            var storeDtos = stores.Select(s => new StoreDto
+            var storeDtos = stores.Select(s => new StoreResponseDto
             {
                 Id = s.Id,
                 Name = s.Name,
                 Location = s.Location,
                 Description = s.Description,
-                Products = s.Products.Select(p => new ProductDto
+                Products = s.Products.Select(p => new ProductResponseDto
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -40,9 +40,8 @@ namespace WebApplication1.Controllers
             return Ok(storeDtos);
         }
 
-        // GET: api/store/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<StoreDto>> GetStoreById(int id)
+        public async Task<ActionResult<StoreResponseDto>> GetStoreById(int id)
         {
             var store = await _context.Stores.Include(s => s.Products)
                 .FirstOrDefaultAsync(s => s.Id == id);
@@ -50,13 +49,13 @@ namespace WebApplication1.Controllers
             if (store == null)
                 return NotFound();
 
-            var storeDto = new StoreDto
+            var storeDto = new StoreResponseDto
             {
                 Id = store.Id,
                 Name = store.Name,
                 Location = store.Location,
                 Description = store.Description,
-                Products = store.Products.Select(p => new ProductDto
+                Products = store.Products.Select(p => new ProductResponseDto
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -68,9 +67,8 @@ namespace WebApplication1.Controllers
             return Ok(storeDto);
         }
 
-        // POST: api/store
         [HttpPost]
-        public async Task<ActionResult<StoreDto>> CreateStore([FromBody] StoreDto storeDto)
+        public async Task<ActionResult<StoreResponseDto>> CreateStore([FromBody] StoreCreateDto storeDto)
         {
             var store = new Stores
             {
@@ -88,14 +86,26 @@ namespace WebApplication1.Controllers
             _context.Stores.Add(store);
             await _context.SaveChangesAsync();
 
-            // Response DTO
-            storeDto.Id = store.Id;
-            return CreatedAtAction(nameof(GetStoreById), new { id = store.Id }, storeDto);
+            var response = new StoreResponseDto
+            {
+                Id = store.Id,
+                Name = store.Name,
+                Location = store.Location,
+                Description = store.Description,
+                Products = store.Products.Select(p => new ProductResponseDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Description = p.Description
+                }).ToList()
+            };
+
+            return CreatedAtAction(nameof(GetStoreById), new { id = store.Id }, response);
         }
 
-        // PUT: api/store/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStore(int id, [FromBody] StoreDto updatedDto)
+        public async Task<IActionResult> UpdateStore(int id, [FromBody] StoreCreateDto updatedDto)
         {
             var store = await _context.Stores.Include(s => s.Products).FirstOrDefaultAsync(s => s.Id == id);
             if (store == null)
@@ -120,7 +130,6 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // DELETE: api/store/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStore(int id)
         {
