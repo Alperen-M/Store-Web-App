@@ -1,6 +1,7 @@
-﻿using WebApplication1.Models;
 using System.Collections.Generic;
-namespace WebApplication1.Models
+using WebApplication1.Dtos;
+
+namespace WebApplication1.Dtos
 {
     public class ProductResponseDto
     {
@@ -12,6 +13,9 @@ namespace WebApplication1.Models
 
         public string? Description { get; set; }
 
-        public StoreDto? Store { get; set; }
+        public int StoreId { get; set; }  // isteğe bağlı
     }
 }
+
+
+
