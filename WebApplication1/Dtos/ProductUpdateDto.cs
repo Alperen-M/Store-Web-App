@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 namespace WebApplication1.Models
 {
     public class ProductUpdateDto
