@@ -2,17 +2,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
-    public class Stores
+    public class Product
     {
         [Key]
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
-        public string Location { get; set; } = string.Empty;
+        public decimal Price { get; set; }
 
         public string? Description { get; set; }
 
-        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public int StoreId { get; set; } // FK veritabanında durur, client görmez
+
+        public Stores? Store { get; set; }
     }
 }
