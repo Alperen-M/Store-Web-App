@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
-
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
@@ -15,7 +14,6 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
-
         // GET: api/store
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StoreDto>>> GetAllStores()
