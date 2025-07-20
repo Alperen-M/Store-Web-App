@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
-
 namespace WebApplication1.Controllers
 {
     [ApiController]
@@ -16,7 +15,6 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
-
         // GET: api/product
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAll()
@@ -39,7 +37,6 @@ namespace WebApplication1.Controllers
 
             return Ok(products);
         }
-
         // GET: api/product/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductResponseDto>> GetById(int id)
