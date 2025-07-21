@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
+
+// Entity'leri alias ile kullan (ambiguous riskini azaltır)
+using ProductEntity = WebApplication1.Models.Product;
+using StoreEntity = WebApplication1.Models.Store;
+
 namespace WebApplication1.Controllers
 {
     [ApiController]
@@ -15,7 +20,10 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
+
+        // --------------------------------------------------------------------
         // GET: api/product
+        // --------------------------------------------------------------------
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAll()
         {
@@ -27,18 +35,17 @@ namespace WebApplication1.Controllers
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
-                    Store = new StoreDto
-                    {
-                        Id = p.Store.Id,
-                        Name = p.Store.Name
-                    }
+             
                 })
                 .ToListAsync();
 
             return Ok(products);
         }
+
+        // --------------------------------------------------------------------
         // GET: api/product/{id}
-        [HttpGet("{id}")]
+        // --------------------------------------------------------------------
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<ProductResponseDto>> GetById(int id)
         {
             var product = await _context.Products
@@ -50,11 +57,7 @@ namespace WebApplication1.Controllers
                     Name = p.Name,
                     Price = p.Price,
                     Description = p.Description,
-                    Store = new StoreDto
-                    {
-                        Id = p.Store.Id,
-                        Name = p.Store.Name
-                    }
+                  
                 })
                 .FirstOrDefaultAsync();
 
@@ -64,37 +67,64 @@ namespace WebApplication1.Controllers
             return Ok(product);
         }
 
+        // --------------------------------------------------------------------
         // POST: api/product
+        // StoreId Swagger'da yok; otomatik atanacak.
+        // --------------------------------------------------------------------
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductCreateDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // StoreId kullanıcıdan gelmiyorsa, örnek sabit atama
-            // Eğer client StoreId gönderecekse, dto'ya ekleyip burada kullanabilirsin
-            int defaultStoreId = 1;
+            // En az bir Store var mı?
+            var firstStore = await _context.Store.FirstOrDefaultAsync();
+            if (firstStore == null)
+            {
+                return BadRequest("Önce en az bir mağaza (Store) oluşturmalısınız; ürün atanacak mağaza bulunamadı.");
+            }
 
-            var product = new Product
+            var product = new ProductEntity
             {
                 Name = dto.Name,
                 Price = dto.Price,
                 Description = dto.Description,
-                StoreId = defaultStoreId
+                StoreId = firstStore.Id
             };
 
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+            // Response DTO
+            var response = new ProductResponseDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                
+            };
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, response);
         }
 
+        // --------------------------------------------------------------------
         // PUT: api/product/{id}
-        [HttpPut("{id}")]
+        // Store değişmez; sadece temel alanlar güncellenir.
+        // --------------------------------------------------------------------
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return BadRequest(new { Errors = errors });
+            }
+
 
             var product = await _context.Products.FindAsync(id);
             if (product == null)
@@ -105,12 +135,13 @@ namespace WebApplication1.Controllers
             product.Description = dto.Description;
 
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
+        // --------------------------------------------------------------------
         // DELETE: api/product/{id}
-        [HttpDelete("{id}")]
+        // --------------------------------------------------------------------
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -119,8 +150,8 @@ namespace WebApplication1.Controllers
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
     }
 }
+
