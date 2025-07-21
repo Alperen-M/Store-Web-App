@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Dtos;
+
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
@@ -14,35 +17,41 @@ namespace WebApplication1.Controllers
         {
             _context = context;
         }
-        // GET: api/store
+
+        // Tüm mağazaları getir
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StoreDto>>> GetAllStores()
+        [SwaggerOperation(Summary = "Tüm mağazaları getir", Description = "Veritabanındaki tüm mağazaların listesini döner.")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<StoreDto>>> GetStores()
         {
-            var stores = await _context.Stores.Include(s => s.Products).ToListAsync();
-
-            var storeDtos = stores.Select(s => new StoreDto
-            {
-               
-                Name = s.Name,
-                Location = s.Location,
-                Description = s.Description,
-                Products = s.Products.Select(p => new ProductDto
+            var stores = await _context.Store
+                .Include(s => s.Products)
+                .Select(s => new StoreDto
                 {
-                  
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description
-                }).ToList()
-            });
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    Location = s.Location,
+                    Products = s.Products.Select(p => new ProductResponseDto
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Price = p.Price
+                    }).ToList()
+                }).ToListAsync();
 
-            return Ok(storeDtos);
+            return Ok(stores);
         }
 
-        // GET: api/store/5
+        // ID'ye göre mağaza getir
         [HttpGet("{id}")]
-        public async Task<ActionResult<StoreDto>> GetStoreById(int id)
+        [SwaggerOperation(Summary = "ID'ye göre mağaza getir", Description = "Verilen ID'ye sahip mağazayı döner.")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<StoreDto>> GetStore(int id)
         {
-            var store = await _context.Stores.Include(s => s.Products)
+            var store = await _context.Store
+                .Include(s => s.Products)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             if (store == null)
@@ -50,84 +59,77 @@ namespace WebApplication1.Controllers
 
             var storeDto = new StoreDto
             {
-              
+                Id = store.Id,
                 Name = store.Name,
-                Location = store.Location,
                 Description = store.Description,
-                Products = store.Products.Select(p => new ProductDto
+                Location = store.Location,
+                Products = store.Products.Select(p => new ProductResponseDto
                 {
-                   
+                    Id = p.Id,
                     Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description
+                    Price = p.Price
                 }).ToList()
             };
 
             return Ok(storeDto);
         }
 
-        // POST: api/store
+        // Yeni mağaza oluştur
         [HttpPost]
+        [SwaggerOperation(Summary = "Yeni mağaza oluştur", Description = "Yeni bir mağaza kaydı oluşturur.")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<StoreDto>> CreateStore([FromBody] StoreDto storeDto)
         {
-            var store = new Stores
+            var store = new Store
             {
                 Name = storeDto.Name,
-                Location = storeDto.Location,
                 Description = storeDto.Description,
-                Products = storeDto.Products.Select(p => new Product
-                {
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description
-                }).ToList()
+                Location = storeDto.Location
             };
 
-            _context.Stores.Add(store);
+            _context.Store.Add(store);
             await _context.SaveChangesAsync();
 
-            // Response DTO
-            
-            return CreatedAtAction(nameof(GetStoreById), new { id = store.Id }, storeDto);
+            storeDto.Id = store.Id;
+
+            return CreatedAtAction(nameof(GetStore), new { id = store.Id }, storeDto);
         }
 
-        // PUT: api/store/5
+        // Mağaza güncelle
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStore(int id, [FromBody] StoreDto updatedDto)
+        [SwaggerOperation(Summary = "Mağaza güncelle", Description = "Belirli bir ID'ye sahip mağazayı günceller.")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateStore(int id, [FromBody] StoreDto storeDto)
         {
-            var store = await _context.Stores.Include(s => s.Products).FirstOrDefaultAsync(s => s.Id == id);
+            var store = await _context.Store.FindAsync(id);
             if (store == null)
                 return NotFound();
 
-            store.Name = updatedDto.Name;
-            store.Location = updatedDto.Location;
-            store.Description = updatedDto.Description;
-
-            store.Products.Clear();
-            foreach (var p in updatedDto.Products)
-            {
-                store.Products.Add(new Product
-                {
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description
-                });
-            }
+            store.Name = storeDto.Name;
+            store.Description = storeDto.Description;
+            store.Location = storeDto.Location;
 
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
-        // DELETE: api/store/5
+        // Mağaza sil
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Mağaza sil", Description = "Belirli bir ID'ye sahip mağazayı siler.")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteStore(int id)
         {
-            var store = await _context.Stores.Include(s => s.Products).FirstOrDefaultAsync(s => s.Id == id);
+            var store = await _context.Store.FindAsync(id);
             if (store == null)
                 return NotFound();
 
-            _context.Stores.Remove(store);
+            _context.Store.Remove(store);
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
     }
