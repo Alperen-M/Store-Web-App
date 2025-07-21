@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 
 namespace WebApplication1.Data
@@ -10,7 +10,7 @@ namespace WebApplication1.Data
         }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Stores> Stores { get; set; }
+        public DbSet<Store> Store { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
