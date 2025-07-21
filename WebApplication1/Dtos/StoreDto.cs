@@ -1,23 +1,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebApplication1.Dtos;
-namespace WebApplication1.Models
+// Dtos/StoreDto.cs
+namespace WebApplication1.Dtos
 {
     public class StoreDto
     {
         public int Id { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Name { get; set; } = string.Empty;
-
-        [StringLength(255)]
+        public string Name { get; set; }
         public string? Description { get; set; }
-
-        [StringLength(100)]
         public string? Location { get; set; }
 
-        public List<WebApplication1.Dtos.ProductResponseDto>? Products { get; set; }
-
+        // EKLEDİK: Store içindeki ürünlerin listesi
+        public List<ProductResponseDto>? Products { get; set; }
     }
 }
