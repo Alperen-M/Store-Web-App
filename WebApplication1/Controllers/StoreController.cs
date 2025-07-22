@@ -12,7 +12,6 @@ namespace WebApplication1.Controllers
     public class StoreController : ControllerBase
     {
         private readonly AppDbContext _context;
-
         public StoreController(AppDbContext context)
         {
             _context = context;
@@ -39,10 +38,8 @@ namespace WebApplication1.Controllers
                         Price = p.Price
                     }).ToList()
                 }).ToListAsync();
-
             return Ok(stores);
         }
-
         // ID'ye göre mağaza getir
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "ID'ye göre mağaza getir", Description = "Verilen ID'ye sahip mağazayı döner.")]
@@ -70,7 +67,6 @@ namespace WebApplication1.Controllers
                     Price = p.Price
                 }).ToList()
             };
-
             return Ok(storeDto);
         }
 
