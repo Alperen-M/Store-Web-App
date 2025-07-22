@@ -1,24 +1,26 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using WebApplication1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Controller servisi
 builder.Services.AddControllers();
 
-// Swagger Ayarları
+// Swagger yapılandırması (OpenAPI 3.0 uyumlu)
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(options =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("1.0", new OpenApiInfo
     {
         Title = "🛍️ Store & Product API",
-        Version = "1.0",  // "v1" yerine "1.0" veya "3.0.0" yaz
-        Description = "📘 Mağaza ve ürün yönetimi için RESTful API dokümantasyonu.\n\n🔐 Herkese açık (authentication gerekmez).",
+        Version = "1.0",
+        Description = "📘 Mağaza ve ürün yönetimi için RESTful API dokümantasyonu.",
         Contact = new OpenApiContact
         {
             Name = "Alperen Mengünoğul",
@@ -31,31 +33,29 @@ builder.Services.AddSwaggerGen(c =>
             Url = new Uri("https://opensource.org/licenses/MIT")
         }
     });
+
+    // XML yorum dosyasını kontrol ederek dahil et
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
 });
 
 var app = builder.Build();
 
-// HTTP pipeline yapılandırması
-if (app.Environment.IsDevelopment())
+// Swagger middleware (tüm ortamlar için aktif)
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "🛍️ Store & Product API 1.0");
+    c.RoutePrefix = "swagger"; // http://localhost:5257/swagger
+});
 
-    // Swagger UI Özelleştirme
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "🛍️ Store & Product API v1");
-        c.DocumentTitle = "Store & Product API Docs";
-        c.InjectStylesheet("/wwwroot/swagger-ui/custom.css"); // tema dosyası
-        c.InjectJavascript("/wwwroot/swagger-ui/custom.js");  // ek açıklama
-        c.RoutePrefix = "swagger"; // Burası boş değil, "swagger" olmalı
-    });
-}
-
-// wwwroot klasörünü kullanmak için gerekli
-app.UseStaticFiles(); // custom.css ve custom.js dosyaları için gerekli
-
+// Diğer middleware'ler
+app.UseStaticFiles();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
