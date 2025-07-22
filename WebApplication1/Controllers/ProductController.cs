@@ -6,6 +6,7 @@ using WebApplication1.Models;
 
 // Entity'leri alias ile kullan (ambiguous riskini azaltır)
 using ProductEntity = WebApplication1.Models.Product;
+
 using StoreEntity = WebApplication1.Models.Store;
 
 namespace WebApplication1.Controllers
@@ -15,7 +16,6 @@ namespace WebApplication1.Controllers
     public class ProductController : ControllerBase
     {
         private readonly AppDbContext _context;
-
         public ProductController(AppDbContext context)
         {
             _context = context;
@@ -38,7 +38,6 @@ namespace WebApplication1.Controllers
              
                 })
                 .ToListAsync();
-
             return Ok(products);
         }
 
