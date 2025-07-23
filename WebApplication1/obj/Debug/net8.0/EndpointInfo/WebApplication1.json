@@ -1,8 +1,18 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "WebApplication1",
-    "version": "1.0"
+    "title": "🛍️ Store & Product API",
+    "description": "📘 Mağaza ve ürün yönetimi için RESTful API dokümantasyonu.",
+    "contact": {
+      "name": "Alperen Mengünoğul",
+      "url": "https://github.com/Alperen-M",
+      "email": "mengunogulalperen@gmail.com"
+    },
+    "license": {
+      "name": "MIT Lisansı",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "v1"
   },
   "paths": {
     "/api/Product": {
@@ -12,33 +22,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Product"
-                  }
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -50,17 +34,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductCreateDto"
               }
             }
           }
@@ -90,24 +74,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -130,17 +97,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ProductDto"
+                "$ref": "#/components/schemas/ProductUpdateDto"
               }
             }
           }
@@ -180,33 +147,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StoreDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StoreDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/StoreDto"
-                  }
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -218,41 +159,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreCreateDto"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -275,24 +199,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StoreDto"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       },
@@ -315,17 +222,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             }
           }
@@ -361,36 +268,7 @@
   },
   "components": {
     "schemas": {
-      "Product": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "storeId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "store": {
-            "$ref": "#/components/schemas/Stores"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProductDto": {
+      "ProductCreateDto": {
         "required": [
           "name",
           "price"
@@ -398,7 +276,9 @@
         "type": "object",
         "properties": {
           "name": {
-            "minLength": 1,
+            "maxLength": 100,
+            "minLength": 0,
+            "pattern": "^[a-zA-ZğüşöçıİĞÜŞÖÇ\\s]+$",
             "type": "string"
           },
           "price": {
@@ -407,13 +287,41 @@
             "format": "double"
           },
           "description": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "StoreDto": {
+      "ProductUpdateDto": {
+        "required": [
+          "name",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "price": {
+            "minimum": 0,01,
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StoreCreateDto": {
         "required": [
           "location",
           "name"
@@ -421,51 +329,53 @@
         "type": "object",
         "properties": {
           "name": {
-            "minLength": 1,
+            "maxLength": 100,
+            "minLength": 0,
+            "pattern": "^[a-zA-ZğüşöçıİĞÜŞÖÇ\\s]+$",
             "type": "string"
           },
           "location": {
-            "minLength": 1,
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string"
           },
           "description": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
             "nullable": true
           },
           "products": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProductDto"
+              "$ref": "#/components/schemas/ProductCreateDto"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Stores": {
+      "StoreUpdateDto": {
+        "required": [
+          "location",
+          "name"
+        ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
           },
           "location": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
           },
           "description": {
+            "maxLength": 500,
+            "minLength": 0,
             "type": "string",
-            "nullable": true
-          },
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Product"
-            },
             "nullable": true
           }
         },

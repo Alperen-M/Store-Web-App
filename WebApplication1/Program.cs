@@ -1,7 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using WebApplication1.Data;
+using WebApplication1.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +12,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Controller servisi
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+builder.Services.AddScoped<IStoreService, StoreService>();
+
+
 // Swagger yapılandırması (OpenAPI 3.0 uyumlu)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("1.0", new OpenApiInfo
+
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "🛍️ Store & Product API",
-        Version = "1.0",
+        Version = "v1",
         Description = "📘 Mağaza ve ürün yönetimi için RESTful API dokümantasyonu.",
         Contact = new OpenApiContact
         {
@@ -49,7 +57,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "🛍️ Store & Product API 1.0");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "🛍️ Store & Product API v1");
     c.RoutePrefix = "swagger"; // http://localhost:5257/swagger
 });
 

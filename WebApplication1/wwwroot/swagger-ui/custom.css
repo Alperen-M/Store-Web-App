@@ -1,0 +1,12 @@
+﻿body {
+    background-color: #f9f9f9 !important;
+}
+
+.swagger-ui .topbar {
+    background-color: #4CAF50;
+}
+
+.swagger-ui .topbar-wrapper .link span {
+    color: white !important;
+    font-weight: bold;
+}

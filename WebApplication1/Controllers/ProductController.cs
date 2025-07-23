@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Data;
+using WebApplication1.EntityFrameworkCore;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
 
 // Entity'leri alias ile kullan (ambiguous riskini azaltır)
 using ProductEntity = WebApplication1.Models.Product;
-
 using StoreEntity = WebApplication1.Models.Store;
 
 namespace WebApplication1.Controllers
@@ -15,142 +14,44 @@ namespace WebApplication1.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public ProductController(AppDbContext context)
+        private readonly IProductService _service;
+
+        public ProductController(IProductService service)
         {
-            _context = context;
+            _service = service;
         }
 
-        // --------------------------------------------------------------------
-        // GET: api/product
-        // --------------------------------------------------------------------
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAll()
+        public async Task<IActionResult> GetAll() => Ok(await _service.GetAllAsync());
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var products = await _context.Products
-                .Include(p => p.Store)
-                .Select(p => new ProductResponseDto
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description,
-             
-                })
-                .ToListAsync();
-            return Ok(products);
+            var p = await _service.GetByIdAsync(id);
+            return p == null ? NotFound() : Ok(p);
         }
 
-        // --------------------------------------------------------------------
-        // GET: api/product/{id}
-        // --------------------------------------------------------------------
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<ProductResponseDto>> GetById(int id)
-        {
-            var product = await _context.Products
-                .Include(p => p.Store)
-                .Where(p => p.Id == id)
-                .Select(p => new ProductResponseDto
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description,
-                  
-                })
-                .FirstOrDefaultAsync();
-
-            if (product == null)
-                return NotFound();
-
-            return Ok(product);
-        }
-
-        // --------------------------------------------------------------------
-        // POST: api/product
-        // StoreId Swagger'da yok; otomatik atanacak.
-        // --------------------------------------------------------------------
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductCreateDto dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            // En az bir Store var mı?
-            var firstStore = await _context.Store.FirstOrDefaultAsync();
-            if (firstStore == null)
-            {
-                return BadRequest("Önce en az bir mağaza (Store) oluşturmalısınız; ürün atanacak mağaza bulunamadı.");
-            }
-
-            var product = new ProductEntity
-            {
-                Name = dto.Name,
-                Price = dto.Price,
-                Description = dto.Description,
-                StoreId = firstStore.Id
-            };
-
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            // Response DTO
-            var response = new ProductResponseDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Description = product.Description,
-                
-            };
-
-            return CreatedAtAction(nameof(GetById), new { id = product.Id }, response);
+            var result = await _service.CreateAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-        // --------------------------------------------------------------------
-        // PUT: api/product/{id}
-        // Store değişmez; sadece temel alanlar güncellenir.
-        // --------------------------------------------------------------------
-        [HttpPut("{id:int}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ProductUpdateDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                return BadRequest(new { Errors = errors });
-            }
-
-
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-                return NotFound();
-
-            product.Name = dto.Name;
-            product.Price = dto.Price;
-            product.Description = dto.Description;
-
-            await _context.SaveChangesAsync();
-            return NoContent();
+            var success = await _service.UpdateAsync(id, dto);
+            return success ? NoContent() : NotFound();
         }
 
-        // --------------------------------------------------------------------
-        // DELETE: api/product/{id}
-        // --------------------------------------------------------------------
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-                return NotFound();
-
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            var success = await _service.DeleteAsync(id);
+            return success ? NoContent() : NotFound();
         }
+
     }
 }
 
