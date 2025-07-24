@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "9.0.7",
           "ServiceStack.Interfaces": "8.8.0",
           "Swashbuckle.AspNetCore": "6.6.2",
-          "Swashbuckle.AspNetCore.Swagger": "6.6.2"
+          "Swashbuckle.AspNetCore.Swagger": "6.6.2",
+          "WebApplication1.EntityFrameworkCore": "1.0.0"
         },
         "runtime": {
           "WebApplication1.dll": {}
@@ -1095,6 +1096,18 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "WebApplication1.EntityFrameworkCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.7",
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.7"
+        },
+        "runtime": {
+          "WebApplication1.EntityFrameworkCore.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1705,6 +1718,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "WebApplication1.EntityFrameworkCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

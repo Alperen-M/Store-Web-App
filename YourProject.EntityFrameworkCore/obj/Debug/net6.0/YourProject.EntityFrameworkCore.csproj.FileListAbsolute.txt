@@ -1,0 +1,14 @@
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\bin\Debug\net6.0\YourProject.EntityFrameworkCore.deps.json
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\bin\Debug\net6.0\YourProject.EntityFrameworkCore.runtimeconfig.json
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\bin\Debug\net6.0\YourProject.EntityFrameworkCore.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\bin\Debug\net6.0\YourProject.EntityFrameworkCore.pdb
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.csproj.AssemblyReference.cache
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.AssemblyInfoInputs.cache
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.AssemblyInfo.cs
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.csproj.CoreCompileInputs.cache
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\refint\YourProject.EntityFrameworkCore.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.pdb
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\YourProject.EntityFrameworkCore.genruntimeconfig.cache
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\YourProject.EntityFrameworkCore\obj\Debug\net6.0\ref\YourProject.EntityFrameworkCore.dll
