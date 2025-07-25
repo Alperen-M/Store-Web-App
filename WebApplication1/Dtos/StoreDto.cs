@@ -6,6 +6,7 @@ namespace WebApplication1.Dtos
 {
     public class StoreDto
     {
+        
         public int Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
@@ -13,5 +14,6 @@ namespace WebApplication1.Dtos
 
         // EKLEDİK: Store içindeki ürünlerin listesi
         public List<ProductResponseDto>? Products { get; set; }
+        
     }
 }
