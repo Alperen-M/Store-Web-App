@@ -4,7 +4,6 @@ using WebApplication1.EntityFrameworkCore;
 using WebApplication1.Dtos;
 using WebApplication1.Models;
 
-// Entity'leri alias ile kullan (ambiguous riskini azaltır)
 using ProductEntity = WebApplication1.Models.Product;
 using StoreEntity = WebApplication1.Models.Store;
 
