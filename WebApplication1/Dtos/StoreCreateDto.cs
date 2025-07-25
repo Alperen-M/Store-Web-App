@@ -3,6 +3,7 @@ using WebApplication1.Models;
 
 public class StoreCreateDto
 {
+    
     [Required(ErrorMessage = "Mağaza adı zorunludur.")]
     [StringLength(100, ErrorMessage = "Mağaza adı en fazla 100 karakter olabilir.")]
     [RegularExpression(@"^[a-zA-ZğüşöçıİĞÜŞÖÇ\s]+$", ErrorMessage = "Mağaza adı sadece harf ve boşluk içerebilir.")]
@@ -16,4 +17,5 @@ public class StoreCreateDto
     public string? Description { get; set; }
 
     public List<ProductCreateDto> Products { get; set; } = new();
+    
 }
