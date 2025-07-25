@@ -18,6 +18,7 @@ public class StoreController : ControllerBase
         return Ok(await _service.GetAllAsync());
     }
 
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -32,6 +33,7 @@ public class StoreController : ControllerBase
         var created = await _service.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, StoreUpdateDto dto)
