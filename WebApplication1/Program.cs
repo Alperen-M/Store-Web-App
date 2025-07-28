@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebApplication1.EntityFrameworkCore;
@@ -9,21 +10,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Controller servisi
-builder.Services.AddControllers();
+// FluentValidation + Controller servisleri
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<Program>(); // Validators klasöründeki tüm validatörleri tarar
+        config.DisableDataAnnotationsValidation = true; // [Required] gibi annotation'ları devre dışı bırakır
+    });
 
+// Dependency Injection (Service & Repository)
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
-builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreService, StoreService>();
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
-
-// Swagger yapılandırması (OpenAPI 3.0 uyumlu)
+// Swagger yapılandırması
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "🛍️ Store & Product API",
@@ -42,7 +46,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-    // XML yorum dosyasını kontrol ederek dahil et
+    // XML yorumları dahil et (Swagger'da açıklamalar gösterilsin diye)
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
     if (File.Exists(xmlPath))
@@ -53,15 +57,15 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Swagger middleware (tüm ortamlar için aktif)
+// Swagger UI
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "🛍️ Store & Product API v1");
-    c.RoutePrefix = "swagger"; // http://localhost:5257/swagger
+    c.RoutePrefix = "swagger"; // Swagger UI yolu: http://localhost:{port}/swagger
 });
 
-// Diğer middleware'ler
+// Middleware'ler
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthorization();

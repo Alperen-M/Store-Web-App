@@ -173,3 +173,6 @@ C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\obj\Debu
 C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\ALPEREN\Desktop\okul\warehouse\WebApplication1\WebApplication1\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

@@ -269,26 +269,17 @@
   "components": {
     "schemas": {
       "ProductCreateDto": {
-        "required": [
-          "name",
-          "price"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "pattern": "^[a-zA-ZğüşöçıİĞÜŞÖÇ\\s]+$",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "price": {
-            "minimum": 0,01,
             "type": "number",
             "format": "double"
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           }
@@ -296,25 +287,17 @@
         "additionalProperties": false
       },
       "ProductUpdateDto": {
-        "required": [
-          "name",
-          "price"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "price": {
-            "minimum": 0,01,
             "type": "number",
             "format": "double"
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           }
@@ -322,26 +305,17 @@
         "additionalProperties": false
       },
       "StoreCreateDto": {
-        "required": [
-          "location",
-          "name"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "pattern": "^[a-zA-ZğüşöçıİĞÜŞÖÇ\\s]+$",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "location": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           },
@@ -356,25 +330,17 @@
         "additionalProperties": false
       },
       "StoreUpdateDto": {
-        "required": [
-          "location",
-          "name"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "location": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "description": {
-            "maxLength": 500,
-            "minLength": 0,
             "type": "string",
             "nullable": true
           }
