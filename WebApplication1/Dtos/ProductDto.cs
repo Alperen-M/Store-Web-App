@@ -7,7 +7,9 @@ namespace WebApplication1.Dtos
     {
         
         public string Name { get; set; } = string.Empty;
+        
         public decimal Price { get; set; }
+        
         public string? Description { get; set; }
         
     }
